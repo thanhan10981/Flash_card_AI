@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Flashcards</h1>
+      <div class="header-actions">
+        <button id="toggleThemeBtn" type="button" class="btn secondary">Dark Mode</button>
+        <button id="shuffleBtn" type="button" class="btn secondary">Shuffle</button>
+      </div>
+    </header>
+
+    <section class="card-section">
+      <div id="flashcard" class="flashcard" aria-live="polite">
+        <div class="flashcard-inner">
+          <article class="flashcard-face flashcard-front">
+            <h2 class="face-title">Question</h2>
+            <p id="questionText" class="face-text">No flashcards yet. Add one to begin.</p>
+          </article>
+          <article class="flashcard-face flashcard-back">
+            <h2 class="face-title">Answer</h2>
+            <p id="answerText" class="face-text">Your answer will appear here.</p>
+          </article>
+        </div>
+      </div>
+      <button id="flipBtn" type="button" class="btn">Flip Card</button>
+      <p id="cardCounter" class="card-counter">0 / 0</p>
+    </section>
+
+    <section class="controls">
+      <button id="prevBtn" type="button" class="btn secondary">Previous</button>
+      <button id="nextBtn" type="button" class="btn secondary">Next</button>
+      <button id="addBtn" type="button" class="btn">Add</button>
+      <button id="importBtn" type="button" class="btn">Import JSON</button>
+      <button id="editBtn" type="button" class="btn">Edit</button>
+      <button id="deleteBtn" type="button" class="btn danger">Delete</button>
+    </section>
+  </main>
+
+  <div id="cardModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <h2 id="modalTitle">Add Flashcard</h2>
+      <form id="cardForm">
+        <label for="questionInput">Question</label>
+        <textarea id="questionInput" rows="3" required></textarea>
+
+        <label for="answerInput">Answer</label>
+        <textarea id="answerInput" rows="3" required></textarea>
+
+        <div class="modal-actions">
+          <button id="cancelModalBtn" type="button" class="btn secondary">Cancel</button>
+          <button type="submit" class="btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="importModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="importModalTitle">
+    <div class="modal-content">
+      <h2 id="importModalTitle">Import Flashcards From JSON</h2>
+      <form id="importForm">
+        <label for="jsonInput">Paste JSON array</label>
+        <textarea id="jsonInput" rows="8" placeholder='[{"question":"Q1","answer":"A1"}]' required></textarea>
+
+        <label for="jsonFileInput">Or choose .json file</label>
+        <input id="jsonFileInput" type="file" accept=".json,application/json">
+
+        <p class="help-text">Format: [{"question":"...","answer":"..."}]</p>
+
+        <div class="modal-actions">
+          <button id="cancelImportBtn" type="button" class="btn secondary">Cancel</button>
+          <button type="submit" class="btn">Import</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

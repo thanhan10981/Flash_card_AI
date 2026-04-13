@@ -1,0 +1,255 @@
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --text: #1f2933;
+  --muted: #6b7280;
+  --primary: #0f766e;
+  --primary-hover: #0d5f59;
+  --danger: #c53030;
+  --danger-hover: #a12626;
+  --border: #d9e2ec;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+}
+
+body.dark {
+  --bg: #111827;
+  --surface: #1f2937;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+  --primary: #14b8a6;
+  --primary-hover: #0f9b8b;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --border: #374151;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(160deg, var(--bg), #e6eef5);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+body.dark {
+  background: linear-gradient(160deg, #0f172a, #111827);
+}
+
+.app {
+  width: min(720px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-section {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.flashcard {
+  width: min(520px, 100%);
+  height: 290px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s ease;
+  transform-style: preserve-3d;
+}
+
+.flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  padding: 1rem;
+  background: var(--surface);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.75rem;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.face-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.face-text {
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  align-self: center;
+}
+
+.card-counter {
+  margin: 0;
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 0.55rem;
+  padding: 0.6rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--primary);
+  color: #ffffff;
+  transition: transform 0.15s ease, background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--primary-hover);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.secondary {
+  background: #6b7280;
+}
+
+.btn.secondary:hover {
+  background: #4b5563;
+}
+
+.btn.danger {
+  background: var(--danger);
+}
+
+.btn.danger:hover {
+  background: var(--danger-hover);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  width: min(520px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.65rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+}
+
+input[type="file"] {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.55rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.help-text {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 560px) {
+  .flashcard {
+    height: 250px;
+  }
+
+  .controls .btn {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+}
